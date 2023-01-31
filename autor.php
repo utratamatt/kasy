@@ -1,6 +1,6 @@
 <?php
  session_start();
-	
+//TERST	
  
  
  error_reporting(E_ERROR | E_PARSE); //wyłączenie pokazywanie błędów
