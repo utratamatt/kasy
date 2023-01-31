@@ -1,0 +1,81 @@
+:root{
+    --section-gradient-1: #005f8c ;
+    --section-gradient-2: #00b9be ;
+    --sidebar-bg-clr: #002b59;
+}
+@import url('https://fonts.googleapis.com/css2?family=Nunito&family=Rubik:wght@600&display=swap');
+
+body.menu-preload *{
+    animation-duration: 0s !important;
+    -webkit-animation-duration: 0s !important;
+    transition:background-color 0s, opacity 0s, color 0s, width 0s, height 0s, padding 0s, margin 0s !important;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    color: white;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 600;
+}
+
+html, body{
+    min-height: 100%;
+    margin: 5px;
+    background: linear-gradient(to bottom right, var(--section-gradient-1), var(--section-gradient-2));
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+#heading-user{
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    margin-bottom: 50px;
+}
+
+#heading{
+    font-size: 1.5rem;
+    grid-column-start: 2;
+    justify-self: center;
+    align-self: center;
+
+}
+
+#logged-user{
+    justify-self: end;
+    align-self: center;
+    font-size: 2rem;
+}
+
+#logged-user-icon{
+    margin-right: 20px;
+    padding-left: 20px;
+    font-size: 3.5rem;
+}
+
+.content{
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+}
+.dane_bazadanych{
+    grid-column-start: 2;
+    justify-self: stretch;
+    align-self: center;
+    border-collapse: collapse;
+}
+
+.dane_bazadanych td,th{  
+    padding: 10px;
+    text-align: center;
+}
+.dane_bazadanych tr:not(:last-child){
+    border-bottom: 2px #002b59 groove;
+}
+
+.dane_bazadanych td:not(:last-child), .dane_bazadanych th:not(:last-child){
+    border-right: 2px #002b59 groove;
+}
+
+.dane_bazadanych tr:nth-last-child(2){
+    border-bottom: hidden;
+}

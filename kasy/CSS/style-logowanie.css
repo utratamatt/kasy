@@ -1,0 +1,84 @@
+:root{
+    --section-gradient-1: #002b59;
+    --section-gradient-2: #005f8c;
+    --login-panel-gradient-1: whitesmoke;
+    --login-panel-gradient-2: white;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito&family=Rubik:ital,wght@0,600;1,800&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Rubik', sans-serif;
+}
+
+html, body{
+    min-height: 100%;
+    background: linear-gradient(to bottom right, var(--section-gradient-1), var(--section-gradient-2));
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+.section-content{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 5%;
+    min-height: 100vh;
+}
+
+.login-panel{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    min-height: 60vh;
+    min-width: 37.5vh;
+    background-color:#0E5D7B;
+    background: radial-gradient(circle, var(--login-panel-gradient-1), var(--login-panel-gradient-2));
+    border-radius: 10px;
+}
+
+.login-heading{
+    font-size: 3rem;
+    text-align: center;
+}
+
+.login-email input, .login-password input, .login-submit input{
+    font-size: 1.5em;
+    width: 75%;
+    margin: 5% 7.5%;
+    padding: 10px 5%;
+    border: 1px rgb(143, 128, 128) solid;
+    border-radius: 30px;
+    outline: none;
+    background: lightgrey;
+}
+
+.login-submit input{
+    width: 70%;
+    margin: 10% 15%;
+    color: white;
+    transition: all 0.2s ease;
+    transform: scale(1) perspective(1px);
+    background:  linear-gradient(to right, var(--section-gradient-1), var(--section-gradient-2));
+}
+
+.login-submit input:hover{
+    transform: scale(1.1) perspective(1px)
+}
+
+.login-error{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    margin-inline: 10px;
+    border: 1px red solid;
+    color: rgb(252, 63, 63);
+    height: 50px;
+    background-color: rgb(255, 63, 46, 0.3);
+    border-radius: 5px;
+}
+

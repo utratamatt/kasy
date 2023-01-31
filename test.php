@@ -1,0 +1,87 @@
+<?php
+require('tfpdf/tfpdf.php');
+$host = "localhost"; //adres hosta
+$name = "root";	//nazwa użytkownika
+$pass = "";	//hasło, jeśli nie ma zostawić puste
+$dbname = "projekt"; //nazwa bazy danych
+$conn = mysqli_connect($host, $name, $pass, $dbname); //połączenie z bazą danych
+
+	$zapytanie="SELECT * FROM kasy, klienci, typ_kasy WHERE kasy.kontrahent=klienci.id AND kasy.typ_kasy=typ_kasy.typ_kasy AND kasy.id_kasy=169";
+
+$zap=mysqli_query($conn, $zapytanie);
+				$row=mysqli_fetch_array($zap);
+					
+		$unikat=$row['nr_unikatowy'];
+		$ewidencyjny=$row['nr_ewidencyjny'];
+		$klient=$row['nazwa'];
+		$msc=$row['miejscowosc'];
+		$adr=$row['adres'];
+		$tel=$row['telefon'];
+	//	$kasa=$row['nazwa_kasy'];
+		$data=date('d.m.Y');
+		$kasa=$row['typ_kasy'];
+					
+
+
+
+$pdf = new tFPDF();
+$pdf->AddPage();
+$pdf->SetTitle($unikat." - ".$klient, true);
+
+
+// Add a Unicode font (uses UTF-8)
+$pdf->AddFont('DejaVu','','DejaVuSansCondensed.ttf',true);
+$pdf->SetFont('DejaVu','',20);
+$pdf->Text(40,10,"PROTOKÓŁ WDROŻENIA KASY FISKALNEJ");
+$pdf->SetFont('Arial','B',12);
+$pdf->Text(15,20,"Dane podatnika:");
+$pdf->SetFont('DejaVu','',10);
+$pdf->Text(15,25,$klient);
+$pdf->Text(15,30,$adr.", ".$msc);
+$pdf->Text(15,35,"Telefon: ".$tel);
+$pdf->SetFont('Arial','B',12);
+$pdf->Text(80,20,"Dane kasy:");
+$pdf->SetFont('DejaVu','',10);
+$pdf->Text(80,25,"Nazwa kasy: ".$kasa);
+$pdf->Text(80,30,"Nr unikatowy: ".$unikat);
+$pdf->Text(80,35,"Nr ewidencyjny: ".$ewidencyjny);
+$pdf->Text(80,40,"Nr fabryczny: ");
+$pdf->SetFont('Arial','B',12);
+$pdf->SetLineWidth(0.2);
+
+$pdf->Text(140,20,"Dane Serwisu:");
+$pdf->SetFont('DejaVu','',10);
+$pdf->Text(140,25,"Medi-Comp.pl Sp. z o.o.");
+$pdf->Text(140,30,"Ul. Krakowska 94");
+$pdf->Text(140,35,"34-120 Andrychów");
+$pdf->Text(140,40,"Tel. 667 315 792");
+$pdf->SetFont('DejaVu','',14);
+$pdf->Text(70,55,"INFORMACJE DLA KLIENTA");
+$pdf->SetFont('DejaVu','',10);
+$pdf->Line(1, 45,999, 45);
+
+
+$pdf->Text(22,200,"|_| Przegląd roczny - koszt 149 zł netto");
+$pdf->Text(22,205,"|_| Przegląd dwuletni - koszt 349 zł netto");
+
+$pdf->Line(15, 250,60, 250);
+$pdf->Text(22,255,"Podpis serwisanta");
+
+
+$pdf->Line(150, 250,195, 250);
+$pdf->Text(161,255,"Podpis klienta");
+
+
+$pdf->Line(1, 280,999, 280);
+$pdf->Text(7,290,"Wygenerowano za pomocą dydykowanego programu.");
+$pdf->Text(180,290,$data);
+
+
+
+
+
+
+
+$pdf->Output();
+
+?>
